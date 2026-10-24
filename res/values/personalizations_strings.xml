@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Used by Personalizations' rising_aod_settings. AOSP dropped it from Settings;
+         RisingOS's Settings still has it. -->
+    <!-- [CHAR LIMIT=30] Display settings screen, setting option name to change whether the always-on ambient display feature is enabled. -->
+    <string name="doze_always_on_title">Always on</string>
+</resources>
