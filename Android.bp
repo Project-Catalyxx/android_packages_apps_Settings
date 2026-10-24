@@ -60,9 +60,12 @@ android_library {
         "VendorSupport/src/**/*.kt",
         // The Personalizations pages whose framework side Catalyxx has.
         // Add a section's files here once its framework commits are in.
-        // Spoofing:
+        // Shared by the pages below:
+        "Personalizations/src/com/rising/settings/fragments/AppPickerItem.kt",
+        "Personalizations/src/com/rising/settings/fragments/AppPickerSearchField.kt",
         "Personalizations/src/com/rising/settings/fragments/ExpressiveUi.kt",
-        "Personalizations/src/com/rising/settings/fragments/OptimizedSettingsFragment.kt",
+        "Personalizations/src/com/rising/settings/fragments/InsetFocusRing.kt",
+        // Spoofing:
         "Personalizations/src/com/rising/settings/fragments/PixelPropsSettings.kt",
         "Personalizations/src/com/rising/settings/fragments/PlayIntegrityFix.kt",
         "Personalizations/src/com/rising/settings/fragments/PlayIntegrityFixContent.kt",
