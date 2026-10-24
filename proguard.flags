@@ -80,3 +80,7 @@
 
 # Keep the device state AppFunction schema
 -keep class com.google.android.appfunctions.schema.common.v1.devicestate.** { *; }
+
+# Keep Personalizations: its pages are opened by class name from XML and from
+# PersonalizationsManifest.xml, which R8 can't see.
+-keep class com.rising.settings.** { *; }

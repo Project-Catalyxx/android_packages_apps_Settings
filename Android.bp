@@ -55,9 +55,30 @@ android_library {
     srcs: [
         "src/**/*.java",
         "src/**/*.kt",
+        // RisingOS's preference library for Personalizations
+        "VendorSupport/src/**/*.java",
+        "VendorSupport/src/**/*.kt",
+        // The Personalizations pages whose framework side Catalyxx has.
+        // Add a section's files here once its framework commits are in.
+        // Spoofing:
+        "Personalizations/src/com/rising/settings/fragments/ExpressiveUi.kt",
+        "Personalizations/src/com/rising/settings/fragments/OptimizedSettingsFragment.kt",
+        "Personalizations/src/com/rising/settings/fragments/PixelPropsSettings.kt",
+        "Personalizations/src/com/rising/settings/fragments/PlayIntegrityFix.kt",
+        "Personalizations/src/com/rising/settings/fragments/PlayIntegrityFixContent.kt",
+        "Personalizations/src/com/rising/settings/fragments/Spoof.kt",
+        "Personalizations/src/com/rising/settings/fragments/SpoofingSharedUi.kt",
+        "Personalizations/src/com/rising/settings/fragments/TensorTargetsSettings.kt",
+        "Personalizations/src/com/rising/settings/fragments/TrickyStore.kt",
+        "Personalizations/src/com/rising/settings/fragments/TrickyStoreAppSettings.kt",
+        "Personalizations/src/com/rising/settings/fragments/TrickyStoreContent.kt",
+        "Personalizations/src/com/rising/settings/fragments/UserSelectedAppSpoofSettings.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
+        // Wallpaper depth: needs TensorFlow Lite and its models, not wired up yet
+        "VendorSupport/src/com/android/settings/utils/PortraitSegmenter.kt",
+        "VendorSupport/src/com/android/settings/utils/WallpaperSubjectExtractorService.kt",
     ],
     javac_shard_size: 50,
     use_resource_processor: true,
@@ -65,6 +86,7 @@ android_library {
         "res",
         "res-export", // for external usage
         "res-product",
+        "Personalizations/res",
     ],
     optional_uses_libs: ["com.android.extensions.appfunctions"],
     static_libs: [
@@ -170,6 +192,8 @@ android_library {
     lint: {
         baseline_filename: "lint-baseline.xml",
     },
+
+    additional_manifests: ["PersonalizationsManifest.xml"],
 }
 
 platform_compat_config {

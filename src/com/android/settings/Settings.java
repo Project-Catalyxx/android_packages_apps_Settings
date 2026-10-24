@@ -686,6 +686,7 @@ public class Settings extends SettingsActivity {
     public static class FlashNotificationsActivity extends SettingsActivity { /* empty */ }
     public static class NotificationBundlesActivity extends SettingsActivity { /* empty */ }
     public static class NotificationSummarizationActivity extends SettingsActivity { /* empty */ }
+    public static class PersonalizationsSpoofActivity extends SettingsActivity { /* empty */ }
 
     /** Activity for Adaptive Connectivity Settings. */
     public static class AdaptiveConnectivitySettingsActivity extends CatalystSettingsActivity {

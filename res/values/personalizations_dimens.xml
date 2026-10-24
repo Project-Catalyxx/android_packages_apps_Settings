@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Used by Personalizations' homepage_preference_user_v2 layout. AOSP dropped it
+         with the homepage revamp; RisingOS's Settings still has it. -->
+    <dimen name="homepage_preference_text_padding_start_two_pane">24dp</dimen>
+</resources>

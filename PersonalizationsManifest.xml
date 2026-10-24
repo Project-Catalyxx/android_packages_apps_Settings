@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+
+     Entry points into RisingOS's Personalizations pages, opened from Catalyxx Lab.
+     One activity per page, the same way RisingOS's RisingManifest.xml does it.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.android.settings">
+    <application>
+        <activity android:name="Settings$PersonalizationsSpoofActivity"
+                  android:label="@string/spoofing_title"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.Spoof" />
+        </activity>
+    </application>
+</manifest>

@@ -657,6 +657,7 @@ public class SettingsActivity extends SettingsBaseActivity
     protected boolean isValidFragment(String fragmentName) {
         // Almost all fragments are wrapped in this,
         // except for a few that have their own activities.
+        if (fragmentName.startsWith("com.rising.settings.")) return true;
         for (int i = 0; i < SettingsGateway.ENTRY_FRAGMENTS.length; i++) {
             if (SettingsGateway.ENTRY_FRAGMENTS[i].equals(fragmentName)) return true;
         }
