@@ -16,6 +16,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:androidprv="http://schemas.android.com/apk/prv/res/android">
 
+    <style name="HomepageTitleText" parent="@android:style/TextAppearance.Material">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Widget.ActionBar.Base"
            parent="@android:style/Widget.DeviceDefault.Light.ActionBar.Solid"/>
 
