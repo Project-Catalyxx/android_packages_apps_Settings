@@ -79,6 +79,17 @@ android_library {
         // Fonts (the picker itself is src/com/android/settings/catalyxx/FontPickerFragment.kt):
         "Personalizations/src/com/rising/settings/fragments/OptimizedSettingsFragment.kt",
         "Personalizations/src/com/rising/settings/fragments/ui/fonts/FontManager.kt",
+        // Lock screen customizer (clock styles, widgets, Now Playing, weather):
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/ClockConfig.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/DummyWeatherViews.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/FakeBottomModalSheet.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenConfigPanel.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenCustomizerActivity.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenFeatureConfigs.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenPreviewComponents.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenPreviewTheme.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/WidgetGrid.kt",
+        "Personalizations/src/com/rising/settings/fragments/lockscreen/WidgetRepository.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",
