@@ -76,6 +76,9 @@ android_library {
         "Personalizations/src/com/rising/settings/fragments/TrickyStoreAppSettings.kt",
         "Personalizations/src/com/rising/settings/fragments/TrickyStoreContent.kt",
         "Personalizations/src/com/rising/settings/fragments/UserSelectedAppSpoofSettings.kt",
+        // Fonts (the picker itself is src/com/android/settings/catalyxx/FontPickerFragment.kt):
+        "Personalizations/src/com/rising/settings/fragments/OptimizedSettingsFragment.kt",
+        "Personalizations/src/com/rising/settings/fragments/ui/fonts/FontManager.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",

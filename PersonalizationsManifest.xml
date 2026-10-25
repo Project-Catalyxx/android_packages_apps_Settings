@@ -15,5 +15,11 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                        android:value="com.rising.settings.fragments.Spoof" />
         </activity>
+        <activity android:name="Settings$PersonalizationsFontActivity"
+                  android:label="@string/font_styles_title"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.catalyxx.FontPickerFragment" />
+        </activity>
     </application>
 </manifest>
