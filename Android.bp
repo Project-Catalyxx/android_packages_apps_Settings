@@ -90,6 +90,8 @@ android_library {
         "Personalizations/src/com/rising/settings/fragments/lockscreen/LockscreenPreviewTheme.kt",
         "Personalizations/src/com/rising/settings/fragments/lockscreen/WidgetGrid.kt",
         "Personalizations/src/com/rising/settings/fragments/lockscreen/WidgetRepository.kt",
+        // QuickSwitch (launcher picker):
+        "Personalizations/src/com/rising/settings/fragments/QuickSwitch.kt",
     ],
     exclude_srcs: [
         "src/com/android/settings/biometrics/fingerprint2/lib/**/*.kt",

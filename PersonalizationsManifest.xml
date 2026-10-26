@@ -21,6 +21,12 @@
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                        android:value="com.android.settings.catalyxx.FontPickerFragment" />
         </activity>
+        <activity android:name="Settings$PersonalizationsQuickSwitchActivity"
+                  android:label="@string/quickswitch_launcher_title"
+                  android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.rising.settings.fragments.QuickSwitch" />
+        </activity>
         <activity android:name="com.rising.settings.fragments.lockscreen.LockscreenCustomizerActivity"
                   android:exported="true"
                   android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"
