@@ -99,8 +99,9 @@
     <dimen name="avatar_margin_end">16dp</dimen>
 
     <!-- Homepage -->
-    <!-- avatar_length + avatar_margin_top -->
-    <dimen name="homepage_title_margin_top">104dp</dimen>
+    <!-- Catalyxx: the title row's own space only; the 104dp RisingOS kept was AOSP's room
+         for the avatar and search bar above it, and the search bar now sits at the bottom -->
+    <dimen name="homepage_title_margin_top">24dp</dimen>
     <dimen name="homepage_title_margin_bottom">8dp</dimen>
     <dimen name="homepage_title_margin_horizontal">24dp</dimen>
     <dimen name="homepage_preference_min_height">88sp</dimen>
