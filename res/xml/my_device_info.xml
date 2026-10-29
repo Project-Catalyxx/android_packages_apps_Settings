@@ -27,6 +27,14 @@
         android:selectable="false"
         settings:isPreferenceVisible="false"/>
 
+    <!-- Project Catalyxx: device, specs and build cards -->
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="catalyxx_about_cards"
+        android:layout="@layout/catalyxx_about_cards"
+        android:selectable="false"
+        settings:searchable="false"
+        settings:controller="com.android.settings.deviceinfo.aboutphone.CatalyxxAboutCardsController"/>
+
     <PreferenceCategory
         android:key="basic_info_category"
         android:selectable="false"

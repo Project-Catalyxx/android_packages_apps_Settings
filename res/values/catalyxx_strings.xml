@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- About phone cards and the homepage device card -->
+
+    <!-- Catalyxx version and release codename, e.g. "Catalyxx 17.0 Chlorine" -->
+    <string name="catalyxx_about_version" translatable="false">Catalyxx <xliff:g id="version" example="17.0">%1$s</xliff:g> <xliff:g id="codename" example="Chlorine">%2$s</xliff:g></string>
+    <!-- Build type next to the version: an official build -->
+    <string name="catalyxx_about_official">Official</string>
+    <!-- Build type next to the version: a build that isn't official -->
+    <string name="catalyxx_about_unofficial">Unofficial</string>
+
+    <!-- Specs card: label of the chip, e.g. "Snapdragon 8 Gen 2" -->
+    <string name="catalyxx_about_processor">Processor</string>
+    <!-- Specs card: label of the screen's resolution and refresh rate -->
+    <string name="catalyxx_about_display">Display</string>
+    <!-- Specs card: label of the battery's capacity -->
+    <string name="catalyxx_about_battery">Battery</string>
+    <!-- Specs card: label of the cameras, e.g. "50 MP + 48 MP + 32 MP" -->
+    <string name="catalyxx_about_camera">Camera</string>
+    <!-- Specs card: label of the memory size and use -->
+    <string name="catalyxx_about_ram">RAM</string>
+    <!-- Specs card: label of the internal storage size and use -->
+    <string name="catalyxx_about_storage">Storage</string>
+
+    <!-- Screen resolution and fastest refresh rate, e.g. "1440 × 3216 · 120 Hz" -->
+    <string name="catalyxx_about_display_value"><xliff:g id="width" example="1440">%1$d</xliff:g> × <xliff:g id="height" example="3216">%2$d</xliff:g> · <xliff:g id="refresh_rate" example="120">%3$d</xliff:g> Hz</string>
+    <!-- Battery design capacity, e.g. "5000 mAh" -->
+    <string name="catalyxx_about_battery_value"><xliff:g id="capacity" example="5000">%1$d</xliff:g> mAh</string>
+    <!-- Memory size and how much of it is in use, e.g. "16 GB · 7.9 GB in use" -->
+    <string name="catalyxx_about_ram_value"><xliff:g id="total" example="16 GB">%1$s</xliff:g> · <xliff:g id="used" example="7.9 GB">%2$s</xliff:g> in use</string>
+    <!-- Internal storage in use and its size, e.g. "87 GB of 256 GB used" -->
+    <string name="catalyxx_about_storage_value"><xliff:g id="used" example="87 GB">%1$s</xliff:g> of <xliff:g id="total" example="256 GB">%2$s</xliff:g> used</string>
+
+    <!-- Build card: label of the person who builds Catalyxx for this device -->
+    <string name="catalyxx_about_maintainer">Maintainer</string>
+
+    <!-- Content description of the Catalyxx logo in the specs card; a tap opens Catalyxx Lab -->
+    <string name="catalyxx_about_logo_description">Catalyxx Lab</string>
+    <!-- Content description of the phone outline that shows the wallpaper -->
+    <string name="catalyxx_about_wallpaper_description">Wallpaper</string>
+</resources>

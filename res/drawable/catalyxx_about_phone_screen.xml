@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- The phone outline's screen, shown until the wallpaper is read, or for a live wallpaper -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/settingslib_materialColorSurfaceContainerHighest" />
+    <corners android:radius="14dp" />
+</shape>

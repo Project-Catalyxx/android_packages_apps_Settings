@@ -152,6 +152,9 @@
     <uses-permission android:name="android.permission.MANAGE_COMPANION_DEVICES" />
     <uses-permission android:name="android.permission.CONTROL_SIM_AUTO_PIN_MANAGEMENT" />
     <uses-permission android:name="android.permission.MANAGE_COMPUTER_CONTROL_CONSENT" />
+    <!-- Project Catalyxx: the wallpaper on About phone and the homepage device card.
+         Privileged: privapp_allowlist_com.android.settings.xml allows it. -->
+    <uses-permission android:name="android.permission.READ_WALLPAPER_INTERNAL" />
 
     <application
             android:name=".SettingsApplication"

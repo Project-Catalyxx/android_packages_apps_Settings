@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- The cards at the top of About phone, after Project Infinity X's oos_about.xml. Filled in
+     by CatalyxxAboutCardsController; a fact the device doesn't give is hidden. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/catalyxx_about_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <!-- The device and its Catalyxx build, with the wallpaper in a phone outline -->
+    <LinearLayout
+        style="@style/CatalyxxAboutCard"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/catalyxx_about_device_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.SettingsLib.HeadlineSmall.Emphasized"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_codename"
+                style="@style/CatalyxxAboutLabel" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minHeight="16dp" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.SettingsLib.TitleMedium.Emphasized"
+                android:textColor="?android:attr/textColorPrimary" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/catalyxx_about_official_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginEnd="6dp"
+                    android:background="@drawable/catalyxx_about_official_dot" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_build_type"
+                    style="@style/CatalyxxAboutLabel" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="90dp"
+            android:layout_height="180dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/catalyxx_about_phone_screen"
+            android:clipToOutline="true"
+            android:foreground="@drawable/catalyxx_about_phone_frame">
+
+            <com.android.settings.widget.CatalyxxWallpaperView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/catalyxx_about_wallpaper_description" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- The hardware, next to the Catalyxx logo -->
+    <LinearLayout
+        style="@style/CatalyxxAboutCard"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_processor"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_processor" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_processor_value"
+                    style="@style/CatalyxxAboutValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_display"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_display" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_display_value"
+                    style="@style/CatalyxxAboutValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_battery"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_battery" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_battery_value"
+                    style="@style/CatalyxxAboutValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_camera"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_camera" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_camera_value"
+                    style="@style/CatalyxxAboutValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_ram"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_ram" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_ram_value"
+                    style="@style/CatalyxxAboutValue" />
+
+                <ProgressBar
+                    android:id="@+id/catalyxx_about_ram_bar"
+                    style="@style/CatalyxxAboutUsageBar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/catalyxx_about_storage"
+                style="@style/CatalyxxAboutItem">
+
+                <TextView
+                    style="@style/CatalyxxAboutLabel"
+                    android:text="@string/catalyxx_about_storage" />
+
+                <TextView
+                    android:id="@+id/catalyxx_about_storage_value"
+                    style="@style/CatalyxxAboutValue" />
+
+                <ProgressBar
+                    android:id="@+id/catalyxx_about_storage_bar"
+                    style="@style/CatalyxxAboutUsageBar" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- A tap opens Catalyxx Lab, a long press Android's easter egg -->
+        <ImageView
+            android:id="@+id/catalyxx_about_logo"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/catalyxx_about_logo_description"
+            android:src="@drawable/catalyxx_homepage_logo" />
+    </LinearLayout>
+
+    <!-- The build -->
+    <LinearLayout
+        style="@style/CatalyxxAboutCard"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/catalyxx_about_maintainer"
+            style="@style/CatalyxxAboutItem">
+
+            <TextView
+                style="@style/CatalyxxAboutLabel"
+                android:text="@string/catalyxx_about_maintainer" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_maintainer_value"
+                style="@style/CatalyxxAboutValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catalyxx_about_android"
+            style="@style/CatalyxxAboutItem">
+
+            <TextView
+                style="@style/CatalyxxAboutLabel"
+                android:text="@string/firmware_version" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_android_value"
+                style="@style/CatalyxxAboutValue" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/catalyxx_about_security_patch"
+            style="@style/CatalyxxAboutItem">
+
+            <TextView
+                style="@style/CatalyxxAboutLabel"
+                android:text="@string/security_patch" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_security_patch_value"
+                style="@style/CatalyxxAboutValue" />
+        </LinearLayout>
+
+        <!-- A tap shows the whole kernel version -->
+        <LinearLayout
+            android:id="@+id/catalyxx_about_kernel"
+            style="@style/CatalyxxAboutItem"
+            android:background="?android:attr/selectableItemBackground">
+
+            <TextView
+                style="@style/CatalyxxAboutLabel"
+                android:text="@string/kernel_version" />
+
+            <TextView
+                android:id="@+id/catalyxx_about_kernel_value"
+                style="@style/CatalyxxAboutValue" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+
+    <!-- About phone: the device's retail name, chip and cameras, which the device itself
+         doesn't report. A device sets them with an overlay (vendor/catalyxx/products).
+         Without one, the cards show ro.product.marketname or the model, the SoC model,
+         and no camera row. -->
+    <!-- e.g. "OnePlus 11" -->
+    <string name="config_catalyxx_device_name" translatable="false"></string>
+    <!-- e.g. "Snapdragon 8 Gen 2" -->
+    <string name="config_catalyxx_device_soc" translatable="false"></string>
+    <!-- e.g. "50 MP + 48 MP + 32 MP" -->
+    <string name="config_catalyxx_device_camera" translatable="false"></string>
+</resources>

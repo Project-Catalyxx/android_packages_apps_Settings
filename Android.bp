@@ -251,6 +251,9 @@ android_app {
     certificate: "platform",
     system_ext_specific: true,
     privileged: true,
+    // Project Catalyxx's privileged permissions, on top of AOSP's
+    // privapp_whitelist_com.android.settings
+    privapp_allowlist: "privapp_allowlist_com.android.settings.xml",
     required: [
         "privapp_whitelist_com.android.settings",
         "settings-platform-compat-config",

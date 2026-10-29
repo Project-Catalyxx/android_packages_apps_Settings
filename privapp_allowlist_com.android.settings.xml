@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Privileged permissions Project Catalyxx's Settings asks for on top of AOSP's. AOSP's own
+     list is frameworks/base/data/etc/com.android.settings.xml; Soong installs this one beside
+     it as Settings.xml, and the system merges the two. -->
+<permissions>
+    <privapp-permissions package="com.android.settings">
+        <!-- The wallpaper on About phone and the homepage device card -->
+        <permission name="android.permission.READ_WALLPAPER_INTERNAL" />
+    </privapp-permissions>
+</permissions>

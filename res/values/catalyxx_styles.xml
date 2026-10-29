@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+
+    <!-- A card at the top of About phone, colored and rounded like Settings' own -->
+    <style name="CatalyxxAboutCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/catalyxx_about_card_background</item>
+        <item name="android:padding">20dp</item>
+    </style>
+
+    <!-- One fact in a card: a label over its value -->
+    <style name="CatalyxxAboutItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+    </style>
+
+    <style name="CatalyxxAboutLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.SettingsLib.BodyMedium</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+
+    <style name="CatalyxxAboutValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.SettingsLib.TitleMedium.Emphasized</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
+
+    <!-- How much of the RAM or storage is in use -->
+    <style name="CatalyxxAboutUsageBar" parent="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">6dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:minHeight">6dp</item>
+        <item name="android:maxHeight">6dp</item>
+        <item name="android:max">100</item>
+        <item name="android:progressDrawable">@drawable/catalyxx_about_progress</item>
+    </style>
+</resources>
