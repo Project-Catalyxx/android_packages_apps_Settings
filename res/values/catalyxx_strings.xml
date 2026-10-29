@@ -43,4 +43,9 @@
     <string name="catalyxx_about_logo_description">Catalyxx Lab</string>
     <!-- Content description of the phone outline that shows the wallpaper -->
     <string name="catalyxx_about_wallpaper_description">Wallpaper</string>
+
+    <!-- Toast after a long press on the homepage device card turns system blur back on -->
+    <string name="catalyxx_homepage_blur_on">Blur effects on</string>
+    <!-- Toast after a long press on the homepage device card turns system blur off -->
+    <string name="catalyxx_homepage_blur_off">Blur effects off</string>
 </resources>

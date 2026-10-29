@@ -5,12 +5,17 @@
 
 package com.android.settings.widget;
 
+import static android.view.CrossWindowBlurListeners.CROSS_WINDOW_BLUR_SUPPORTED;
+
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.preference.PreferenceViewHolder;
 
@@ -19,13 +24,11 @@ import com.android.settings.deviceinfo.aboutphone.CatalyxxDeviceSpecs;
 
 /**
  * The device card at the top of the homepage, after Project Infinity X's: the device's name and
- * Catalyxx version over its blurred wallpaper. A tap opens About phone, a long press turns the
- * blur off or back on.
+ * Catalyxx version over its wallpaper. A tap opens About phone. The wallpaper is blurred while
+ * system blur is on, and a long press turns system blur off or back on, the same switch as
+ * Accessibility > Color and motion > Reduce blur effects.
  */
 public class CatalyxxAboutHomepagePreference extends HomepagePreference {
-
-    private static final String PREFS = "catalyxx_homepage_about";
-    private static final String KEY_BLURRED = "blurred";
 
     public CatalyxxAboutHomepagePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -46,14 +49,29 @@ public class CatalyxxAboutHomepagePreference extends HomepagePreference {
         holder.itemView.setContentDescription(
                 TextUtils.isEmpty(version) ? name : name + ", " + version);
 
-        final SharedPreferences prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        final CatalyxxWallpaperView wallpaper = (CatalyxxWallpaperView) holder.findViewById(
-                R.id.catalyxx_homepage_about_wallpaper);
-        wallpaper.setBlurred(prefs.getBoolean(KEY_BLURRED, true));
-        holder.itemView.setOnLongClickListener(v -> {
-            wallpaper.setBlurred(!wallpaper.isBlurred());
-            prefs.edit().putBoolean(KEY_BLURRED, wallpaper.isBlurred()).apply();
+        ((CatalyxxWallpaperView) holder.findViewById(R.id.catalyxx_homepage_about_wallpaper))
+                .setFollowsSystemBlur(true);
+        holder.itemView.setOnLongClickListener(v -> toggleSystemBlur(v.getContext()));
+    }
+
+    /** Turns system blur off or back on; the wallpaper follows once the system has. */
+    private static boolean toggleSystemBlur(Context context) {
+        if (!CROSS_WINDOW_BLUR_SUPPORTED) {
+            return false;
+        }
+        if (context.getSystemService(PowerManager.class).isPowerSaveMode()) {
+            // Battery Saver keeps blur off, and greys out the Accessibility switch too
+            Toast.makeText(context, R.string.blur_switch_disabled_summary, Toast.LENGTH_SHORT)
+                    .show();
             return true;
-        });
+        }
+        final ContentResolver resolver = context.getContentResolver();
+        final boolean enable =
+                Settings.Global.getInt(resolver, Settings.Global.DISABLE_WINDOW_BLURS, 0) != 0;
+        Settings.Global.putInt(resolver, Settings.Global.DISABLE_WINDOW_BLURS, enable ? 0 : 1);
+        Toast.makeText(context, enable
+                ? R.string.catalyxx_homepage_blur_on : R.string.catalyxx_homepage_blur_off,
+                Toast.LENGTH_SHORT).show();
+        return true;
     }
 }

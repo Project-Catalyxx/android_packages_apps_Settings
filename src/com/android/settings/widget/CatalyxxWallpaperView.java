@@ -6,6 +6,9 @@
 
 package com.android.settings.widget;
 
+import static android.view.CrossWindowBlurListeners.CROSS_WINDOW_BLUR_SUPPORTED;
+
+import android.animation.ValueAnimator;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.RenderEffect;
@@ -13,11 +16,14 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
 import com.android.settingslib.utils.ThreadUtils;
+
+import java.util.function.Consumer;
 
 /**
  * The home screen wallpaper, cropped to fill the view, after Project Radiant's aboutWallpaperView
@@ -28,8 +34,14 @@ public class CatalyxxWallpaperView extends ImageView {
 
     private static final String TAG = "CatalyxxWallpaperView";
     private static final float BLUR_RADIUS = 100f;
+    private static final long BLUR_ANIMATION_MS = 300;
 
-    private boolean mBlurred;
+    private final Consumer<Boolean> mSystemBlurListener = this::onSystemBlurChanged;
+    private boolean mFollowsSystemBlur;
+    private boolean mSystemBlurKnown;
+    private float mBlurRadius;
+    @Nullable
+    private ValueAnimator mBlurAnimator;
 
     public CatalyxxWallpaperView(Context context) {
         this(context, null);
@@ -40,9 +52,32 @@ public class CatalyxxWallpaperView extends ImageView {
         setScaleType(ScaleType.CENTER_CROP);
     }
 
+    /**
+     * Blurs the picture while the system blurs behind its windows (the shade, dialogs, the
+     * launcher), so the picture shows whether system blur is on. On a device without system
+     * blur, the picture stays blurred.
+     */
+    public void setFollowsSystemBlur(boolean follows) {
+        if (mFollowsSystemBlur == follows) {
+            return;
+        }
+        mFollowsSystemBlur = follows;
+        if (isAttachedToWindow()) {
+            if (follows) {
+                startFollowingSystemBlur();
+            } else {
+                stopFollowingSystemBlur();
+                setBlurRadius(0f, false);
+            }
+        }
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        if (mFollowsSystemBlur) {
+            startFollowingSystemBlur();
+        }
         if (getDrawable() != null) {
             return;
         }
@@ -54,16 +89,57 @@ public class CatalyxxWallpaperView extends ImageView {
         });
     }
 
-    /** Blurs the picture, for text drawn on top of it. */
-    public void setBlurred(boolean blurred) {
-        mBlurred = blurred;
-        setRenderEffect(blurred
-                ? RenderEffect.createBlurEffect(BLUR_RADIUS, BLUR_RADIUS, Shader.TileMode.CLAMP)
-                : null);
+    @Override
+    protected void onDetachedFromWindow() {
+        stopFollowingSystemBlur();
+        super.onDetachedFromWindow();
     }
 
-    public boolean isBlurred() {
-        return mBlurred;
+    private void startFollowingSystemBlur() {
+        if (!CROSS_WINDOW_BLUR_SUPPORTED) {
+            setBlurRadius(BLUR_RADIUS, false);
+            return;
+        }
+        // Called at once with the current state, then on every change, Battery Saver included
+        getContext().getSystemService(WindowManager.class).addCrossWindowBlurEnabledListener(
+                getContext().getMainExecutor(), mSystemBlurListener);
+    }
+
+    private void stopFollowingSystemBlur() {
+        if (CROSS_WINDOW_BLUR_SUPPORTED) {
+            getContext().getSystemService(WindowManager.class)
+                    .removeCrossWindowBlurEnabledListener(mSystemBlurListener);
+        }
+        mSystemBlurKnown = false;
+    }
+
+    private void onSystemBlurChanged(boolean enabled) {
+        // Only a change while on screen eases in; the state on attach just shows
+        setBlurRadius(enabled ? BLUR_RADIUS : 0f, mSystemBlurKnown);
+        mSystemBlurKnown = true;
+    }
+
+    private void setBlurRadius(float radius, boolean animate) {
+        if (mBlurAnimator != null) {
+            mBlurAnimator.cancel();
+            mBlurAnimator = null;
+        }
+        if (!animate) {
+            applyBlurRadius(radius);
+            return;
+        }
+        mBlurAnimator = ValueAnimator.ofFloat(mBlurRadius, radius);
+        mBlurAnimator.setDuration(BLUR_ANIMATION_MS);
+        mBlurAnimator.addUpdateListener(
+                animator -> applyBlurRadius((float) animator.getAnimatedValue()));
+        mBlurAnimator.start();
+    }
+
+    private void applyBlurRadius(float radius) {
+        mBlurRadius = radius;
+        setRenderEffect(radius > 0f
+                ? RenderEffect.createBlurEffect(radius, radius, Shader.TileMode.CLAMP)
+                : null);
     }
 
     @Nullable
