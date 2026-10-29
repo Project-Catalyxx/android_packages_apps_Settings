@@ -20,6 +20,14 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:key="top_level_settings">
 
+    <!-- Project Catalyxx: the device card; About phone also keeps its own row -->
+    <com.android.settings.widget.CatalyxxAboutHomepagePreference
+        android:fragment="com.android.settings.deviceinfo.aboutphone.MyDeviceInfoFragment"
+        android:key="top_level_catalyxx_about"
+        android:order="-145"
+        android:title="@string/about_settings"
+        settings:searchable="false"/>
+
     <com.android.settingslib.widget.UntitledPreferenceCategory
         android:order="-130"
         android:key="top_level_connectivity_category">

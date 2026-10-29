@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 Project Catalyxx
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- The device card at the top of the homepage, after Project Infinity X's
+     preference_about_device.xml. The homepage's adapter clears this root's background,
+     so the card is the child. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+    android:paddingTop="8dp"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingBottom="8dp">
+
+    <FrameLayout
+        android:id="@+id/catalyxx_homepage_about_card"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:background="@drawable/catalyxx_homepage_about_background"
+        android:clipToOutline="true"
+        android:duplicateParentState="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <com.android.settings.widget.CatalyxxWallpaperView
+            android:id="@+id/catalyxx_homepage_about_wallpaper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:importantForAccessibility="no" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/catalyxx_homepage_about_scrim" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/catalyxx_homepage_logo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/catalyxx_homepage_about_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.SettingsLib.TitleLarge.Emphasized"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/catalyxx_homepage_about_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.SettingsLib.BodyMedium"
+                    android:textColor="#D9FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
