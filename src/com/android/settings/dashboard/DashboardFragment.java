@@ -371,9 +371,12 @@ public abstract class DashboardFragment extends SettingsPreferenceFragment
      */
     @CallSuper
     protected boolean displayTile(Tile tile) {
-        if (mSuppressInjectedTileKeys != null && tile.hasKey()) {
-            // For suppressing injected tiles for OEMs.
-            return !mSuppressInjectedTileKeys.contains(tile.getKey(getContext()));
+        if (mSuppressInjectedTileKeys != null) {
+            // For suppressing injected tiles for OEMs. Catalyxx: by the tile's preference key,
+            // which is the key Settings makes for it when it has no key hint, so those can be
+            // suppressed too.
+            return !mSuppressInjectedTileKeys.contains(
+                    mDashboardFeatureProvider.getDashboardKeyForTile(tile));
         }
         return true;
     }

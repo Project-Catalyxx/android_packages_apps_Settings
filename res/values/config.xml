@@ -565,7 +565,11 @@
     <string name="config_grayscale_settings_intent" translatable="false"></string>
 
     <!-- List containing the injected tile keys which are suppressed. -->
-    <string-array name="config_suppress_injected_tile_keys" translatable="false"/>
+    <string-array name="config_suppress_injected_tile_keys" translatable="false">
+        <!-- Catalyxx: LineageOS's status bar options open from Catalyxx Lab > Status bar
+             instead of System -->
+        <item>dashboard_tile_pref_org.lineageos.lineageparts.statusbar.StatusBarSettings</item>
+    </string-array>
 
     <!-- Reset application package name -->
     <string-array name="config_skip_reset_apps_package_name" translatable="false">
