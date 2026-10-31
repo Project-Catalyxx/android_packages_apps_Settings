@@ -34,6 +34,7 @@ import android.view.WindowInsets;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
@@ -50,6 +51,10 @@ import com.android.settings.activityembedding.ActivityEmbeddingUtils;
 import com.android.settings.core.RoundCornerPreferenceAdapter;
 import com.android.settings.core.SubSettingLauncher;
 import com.android.settings.dashboard.DashboardFragment;
+import com.android.settings.homepage.periodic.PeriodicElement;
+import com.android.settings.homepage.periodic.PeriodicElementFragment;
+import com.android.settings.homepage.periodic.PeriodicHome;
+import com.android.settings.homepage.periodic.PeriodicHomeView;
 import com.android.settings.overlay.FeatureFactory;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.support.SupportPreferenceController;
@@ -77,6 +82,11 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     private boolean mScrollNeeded = true;
     private boolean mFirstStarted = true;
     private ActivityEmbeddingController mActivityEmbeddingController;
+    // Catalyxx: the homepage style this page was built with, and the periodic home while it
+    // stands in for the list
+    private int mHomeStyle = PeriodicHome.STYLE_CLASSIC;
+    @Nullable
+    private PeriodicHomeView mPeriodicHome;
 
     public TopLevelSettings() {
         final Bundle args = new Bundle();
@@ -156,6 +166,7 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        mHomeStyle = PeriodicHome.getStyle(getContext());
         mIsEmbeddingActivityEnabled =
                 ActivityEmbeddingUtils.isEmbeddingActivityEnabled(getContext());
         if (!mIsEmbeddingActivityEnabled) {
@@ -190,7 +201,109 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
                     getContext());
         }
         super.onStart();
+        if (mPeriodicHome != null) {
+            mPeriodicHome.start();
+        }
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // Catalyxx: the periodic home stands in for the list on a phone; two-pane keeps Classic
+        if (mHomeStyle != PeriodicHome.STYLE_CLASSIC && !mIsEmbeddingActivityEnabled) {
+            showPeriodicHome();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (PeriodicHome.getStyle(getContext()) != mHomeStyle) {
+            // Picked in Catalyxx Lab while the homepage was away
+            getActivity().recreate();
+            return;
+        }
+        refreshPeriodicHome();
+    }
+
+    @Override
+    public void onStop() {
+        if (mPeriodicHome != null) {
+            mPeriodicHome.stop();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (mPeriodicHome != null) {
+            mPeriodicHome.stop();
+            mPeriodicHome = null;
+        }
+        super.onDestroyView();
+    }
+
+    @Override
+    protected void refreshDashboardTiles(final String tag) {
+        super.refreshDashboardTiles(tag);
+        // An app added or removed a row
+        refreshPeriodicHome();
+    }
+
+    // Puts the periodic home in the list's place. If it can't be built, this launch keeps
+    // Classic.
+    private void showPeriodicHome() {
+        final RecyclerView list = getListView();
+        if (list == null || !(list.getParent() instanceof ViewGroup)) {
+            return;
+        }
+        final ViewGroup parent = (ViewGroup) list.getParent();
+        final PeriodicHomeView home = new PeriodicHomeView(getContext(), mPeriodicHost);
+        try {
+            home.bind(getPreferenceScreen());
+        } catch (RuntimeException e) {
+            Log.e(TAG, "Couldn't build the periodic home, showing Classic", e);
+            return;
+        }
+        parent.addView(home, parent.indexOfChild(list) + 1, new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        list.setVisibility(View.GONE);
+        mPeriodicHome = home;
+    }
+
+    private void refreshPeriodicHome() {
+        if (mPeriodicHome == null) {
+            return;
+        }
+        try {
+            mPeriodicHome.bind(getPreferenceScreen());
+        } catch (RuntimeException e) {
+            Log.e(TAG, "Couldn't refresh the periodic home, showing Classic", e);
+            mPeriodicHome.stop();
+            ((ViewGroup) mPeriodicHome.getParent()).removeView(mPeriodicHome);
+            mPeriodicHome = null;
+            getListView().setVisibility(View.VISIBLE);
+        }
+    }
+
+    private final PeriodicHomeView.Host mPeriodicHost = new PeriodicHomeView.Host() {
+        @Override
+        public void openEntry(Preference entry) {
+            // Exactly as a tap on its row in the list
+            entry.performClick();
+        }
+
+        @Override
+        public void openElement(PeriodicElement element, int number) {
+            new SubSettingLauncher(getActivity())
+                    .setDestination(PeriodicElementFragment.class.getName())
+                    .setArguments(PeriodicElementFragment.args(element, number))
+                    .setTitleRes(element.titleRes)
+                    .setSourceMetricsCategory(getMetricsCategory())
+                    .setIsSecondLayerPage(true)
+                    .launch();
+        }
+    };
 
     void setDefaultHighlightIfNeeded() {
         if (isOnlyOneActivityInTask() && !isActivityEmbedded()) {
@@ -388,7 +501,8 @@ public class TopLevelSettings extends DashboardFragment implements SplitLayoutLi
         void doForEach(Preference preference);
     }
 
-    private static int getPreferenceLayoutResId(Context context) {
+    /** The homepage's entries, which the periodic home's element pages load too. */
+    public static int getPreferenceLayoutResId(Context context) {
         if (DesktopSettingsUtils.shouldShowTopLevelDeviceCategory(context)) {
             return R.xml.top_level_settings_expressive_desktop;
         }

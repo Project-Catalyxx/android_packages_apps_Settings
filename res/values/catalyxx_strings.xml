@@ -48,4 +48,49 @@
     <string name="catalyxx_homepage_blur_on">Blur effects on</string>
     <!-- Toast after a long press on the homepage device card turns system blur off -->
     <string name="catalyxx_homepage_blur_off">Blur effects off</string>
+
+    <!-- Periodic Settings home (Catalyxx Lab > User interface > Settings home): the homepage
+         as a periodic table. Each element holds a few homepage entries; its name is on its
+         tile, its title on its page. -->
+    <string name="periodic_cn_name">Connections</string>
+    <string name="periodic_ps_name">Power</string>
+    <string name="periodic_ps_title">Power &amp; storage</string>
+    <string name="periodic_ls_name">Look &amp; sound</string>
+    <string name="periodic_ap_name">Apps &amp; alerts</string>
+    <string name="periodic_pr_name">Privacy</string>
+    <string name="periodic_pr_title">Security &amp; privacy</string>
+    <string name="periodic_sy_name">System</string>
+    <string name="periodic_sy_title">System &amp; safety</string>
+    <string name="periodic_ac_name">Accessibility</string>
+    <string name="periodic_ex_name">Extras</string>
+
+    <!-- Live value on Connections: Wi-Fi and Bluetooth are both on -->
+    <string name="periodic_value_wifi_bt_on">Wi-Fi · BT on</string>
+    <!-- Live value on Connections: only Wi-Fi is on -->
+    <string name="periodic_value_wifi_on">Wi-Fi on</string>
+    <!-- Live value on Connections: only Bluetooth is on -->
+    <string name="periodic_value_bt_on">BT on</string>
+    <!-- Live value on Connections: Wi-Fi and Bluetooth are both off -->
+    <string name="periodic_value_connections_off">Wi-Fi · BT off</string>
+    <!-- Live value on Power: battery level and free storage, e.g. "87% · 490 GB free" -->
+    <string name="periodic_value_power"><xliff:g id="battery" example="87%">%1$s</xliff:g> · <xliff:g id="free" example="490 GB">%2$s</xliff:g> free</string>
+    <!-- Live value on Look & sound while dark theme is on -->
+    <string name="periodic_value_dark">Dark theme</string>
+    <!-- Live value on Look & sound while dark theme is off -->
+    <string name="periodic_value_light">Light theme</string>
+    <!-- Live value on Apps & alerts while Do Not Disturb is on -->
+    <string name="periodic_value_dnd_on">Do Not Disturb on</string>
+    <!-- Live value on Apps & alerts while Do Not Disturb is off -->
+    <string name="periodic_value_dnd_off">Do Not Disturb off</string>
+    <!-- Live value on Privacy while location is on -->
+    <string name="periodic_value_location_on">Location on</string>
+    <!-- Live value on Privacy while location is off -->
+    <string name="periodic_value_location_off">Location off</string>
+
+    <!-- What TalkBack says for an element tile: its name, then its live value or what it holds -->
+    <string name="periodic_element_description"><xliff:g id="name" example="Connections">%1$s</xliff:g>, <xliff:g id="details" example="Wi-Fi on">%2$s</xliff:g></string>
+    <!-- What TalkBack says for the eclipse card: the phone's name, its version and battery level -->
+    <string name="periodic_eclipse_description"><xliff:g id="device" example="OnePlus 11">%1$s</xliff:g>, <xliff:g id="version" example="Catalyxx 17.0 Chlorine">%2$s</xliff:g>, battery <xliff:g id="battery" example="87%">%3$s</xliff:g></string>
+    <!-- What TalkBack adds to the eclipse card while the phone charges -->
+    <string name="periodic_eclipse_charging">charging</string>
 </resources>

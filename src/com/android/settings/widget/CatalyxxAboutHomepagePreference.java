@@ -54,8 +54,11 @@ public class CatalyxxAboutHomepagePreference extends HomepagePreference {
         holder.itemView.setOnLongClickListener(v -> toggleSystemBlur(v.getContext()));
     }
 
-    /** Turns system blur off or back on; the wallpaper follows once the system has. */
-    private static boolean toggleSystemBlur(Context context) {
+    /**
+     * Turns system blur off or back on; the wallpaper follows once the system has. The periodic
+     * home's eclipse card does the same on a long press.
+     */
+    public static boolean toggleSystemBlur(Context context) {
         if (!CROSS_WINDOW_BLUR_SUPPORTED) {
             return false;
         }
